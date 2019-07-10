@@ -3,49 +3,104 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: apluzhni <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: apluzhni <apluzhni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/01 15:08:34 by apluzhni          #+#    #+#              #
-#    Updated: 2019/04/06 15:55:24 by apluzhni         ###   ########.fr        #
+#    Updated: 2019/07/06 12:34:06 by apluzhni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
-FLAGS = -Wall -Wextra -Werror -c -I
+FLAGS = -Wall -Wextra -Werror
 
-SRC_DIR = ./src/
-OBJ_DIR = ./obj/
-INC_DIR = ./inc/
-
-INC = $(addprefix $(INC_DIR),$(addsuffix .h,$(HEADERS))
-OBJ = $(addprefix $(OBJ_DIR),$(addsuffix .o,$(FILES)))
-SRC = $(addprefix $(SRC_DIR),$(addsuffix .c,$(FILES)))
-
-FILES = ft_memset ft_bzero ft_memcpy \
-		ft_memccpy ft_memmove ft_memchr \
-		ft_memcmp ft_strlen ft_strdup \
-		ft_strcpy ft_strncpy ft_strcat \
-		ft_strncat ft_strlcat ft_strchr \
-		ft_strrchr ft_strstr ft_strnstr \
-		ft_strcmp ft_strncmp ft_atoi \
-		ft_isalpha ft_isdigit ft_isalnum \
-		ft_isascii ft_isprint ft_toupper \
-		ft_tolower ft_memalloc ft_memdel \
-		ft_strnew ft_strdel ft_strclr \
-		ft_striter ft_striteri ft_strmap \
-		ft_strmapi ft_strequ ft_strnequ \
-		ft_strsub ft_strjoin ft_strtrim \
-		ft_strsplit ft_itoa ft_putchar \
-		ft_putstr ft_putendl ft_putnbr \
-		ft_putchar_fd ft_putstr_fd ft_putendl_fd \
-		ft_putnbr_fd ft_lstnew ft_lstdelone \
-		ft_lstdel ft_lstadd ft_lstiter \
-		ft_lstmap ft_lstsplit ft_wordcount \
-		ft_wordfound ft_lstfold ft_swap \
-		ft_strlchr ft_nbrlen get_next_line \
-		exit
+SRC_DIR = ./source/
+OBJ_DIR = ./object/
+INC_DIR = ./include/
 
 HEADERS = libft
+
+FILES = 						\
+		check/ft_isalnum		\
+		check/ft_isalpha		\
+		check/ft_isascii		\
+		check/ft_isdigit		\
+		check/ft_isprint		\
+								\
+		convert/ft_atof			\
+		convert/ft_atoi			\
+		convert/ft_itoa			\
+		convert/ft_tolower		\
+		convert/ft_toupper		\
+								\
+		gnl/get_next_line		\
+								\
+		list/ft_lstadd			\
+		list/ft_lstdel			\
+		list/ft_lstdelone		\
+		list/ft_lstfold			\
+		list/ft_lstiter			\
+		list/ft_lstmap			\
+		list/ft_lstnew			\
+		list/ft_lstsplit		\
+								\
+		memory/ft_bzero			\
+		memory/ft_memalloc		\
+		memory/ft_memccpy		\
+		memory/ft_memchr		\
+		memory/ft_memcmp		\
+		memory/ft_memcpy		\
+		memory/ft_memdel		\
+		memory/ft_memmove		\
+		memory/ft_memset		\
+		memory/ft_realloc		\
+								\
+		number/ft_nbrlen		\
+								\
+		other/ft_exit			\
+		other/ft_swap			\
+		other/ft_wordcount		\
+		other/ft_wordfound		\
+								\
+		output/ft_putchar_fd	\
+		output/ft_putchar		\
+		output/ft_putendl_fd	\
+		output/ft_putendl		\
+		output/ft_putnbr_fd		\
+		output/ft_putnbr		\
+		output/ft_putstr_fd		\
+		output/ft_putstr		\
+								\
+		string/ft_strcat		\
+		string/ft_strchr		\
+		string/ft_strclr		\
+		string/ft_strcmp		\
+		string/ft_strcpy		\
+		string/ft_strdel		\
+		string/ft_strdup		\
+		string/ft_strequ		\
+		string/ft_striter		\
+		string/ft_striteri		\
+		string/ft_strjoin		\
+		string/ft_strlcat		\
+		string/ft_strlchr		\
+		string/ft_strlen		\
+		string/ft_strmap		\
+		string/ft_strmapi		\
+		string/ft_strncat		\
+		string/ft_strncmp		\
+		string/ft_strncpy		\
+		string/ft_strnequ		\
+		string/ft_strnew		\
+		string/ft_strnstr		\
+		string/ft_strrchr		\
+		string/ft_strsplit		\
+		string/ft_strstr		\
+		string/ft_strsub		\
+		string/ft_strtrim
+
+INC = $(addprefix $(INC_DIR),$(addsuffix .h,$(HEADERS)))
+OBJ = $(addprefix $(OBJ_DIR),$(addsuffix .o,$(FILES)))
+SRC = $(addprefix $(SRC_DIR),$(addsuffix .c,$(FILES)))
 
 define colorecho
 	  @tput setaf $2
@@ -65,6 +120,15 @@ $(NAME): $(OBJ_DIR) $(OBJ)
 $(OBJ_DIR):
 	$(call colorecho, "║ $(NAME): Creating object folder... ║", 3)
 	@mkdir $(OBJ_DIR)
+	@mkdir $(OBJ_DIR)/check
+	@mkdir $(OBJ_DIR)/convert
+	@mkdir $(OBJ_DIR)/gnl
+	@mkdir $(OBJ_DIR)/list
+	@mkdir $(OBJ_DIR)/memory
+	@mkdir $(OBJ_DIR)/number
+	@mkdir $(OBJ_DIR)/other
+	@mkdir $(OBJ_DIR)/output
+	@mkdir $(OBJ_DIR)/string
 	$(call colorecho, "║ $(NAME): Compiling source...       ║", 3)
 
 $(OBJ_DIR)%.o:$(SRC_DIR)%.c
@@ -77,8 +141,7 @@ clean:
 fclean: clean
 	$(call colorecho, "║ $(NAME): Deleting old lib...       ║", 1)
 	@rm -f $(NAME)
-	@rm -f get_next_line.h.gch
 
 re: fclean all
 
-.PHONY: clean fclean re header
+.PHONY: clean fclean re
